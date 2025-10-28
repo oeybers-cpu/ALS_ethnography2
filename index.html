@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linguistic Ethnography: Theory & Practice in Sociocultural Linguistics</title>
+    <style>
+        :root {
+            --dark-orange: #cc5500;
+            --dark-blue: #003366;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --accent-green: #009933;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-right: 1px solid var(--medium-gray);
+        }
+        
+        .sidebar h2 {
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--dark-orange);
+        }
+        
+        .tabs {
+            list-style-type: none;
+        }
+        
+        .tab {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background-color: white;
+            border-left: 4px solid var(--dark-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .tab:hover {
+            background-color: var(--medium-gray);
+            border-left-color: var(--dark-orange);
+        }
+        
+        .tab.active {
+            background-color: var(--dark-blue);
+            color: white;
+            border-left-color: var(--dark-orange);
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .section {
+            display: none;
+            margin-bottom: 30px;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .section h1 {
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--dark-orange);
+        }
+        
+        .section h2 {
+            color: var(--dark-blue);
+            margin: 20px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .section h3 {
+            color: var(--dark-blue);
+            margin: 15px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+        }
+        
+        .concept-box {
+            background-color: var(--light-gray);
+            border-left: 4px solid var(--accent-green);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .concept-box h3 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .concept-box h3:before {
+            content: "✓";
+            display: inline-block;
+            margin-right: 10px;
+            background-color: var(--accent-green);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+        }
+        
+        .example-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-green);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .example-box h3 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+        
+        .news-article {
+            background-color: #fff;
+            border: 1px solid var(--medium-gray);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .news-article h3 {
+            color: var(--dark-blue);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        
+        .news-article .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .references-list {
+            margin: 25px 0;
+        }
+        
+        .reference-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--light-gray);
+            border-radius: 6px;
+            border-left: 3px solid var(--dark-blue);
+        }
+        
+        .reference-item p {
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        .reference-item a {
+            color: var(--dark-orange);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .reference-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .reference-item em {
+            font-style: italic;
+            color: var(--dark-blue);
+        }
+        
+        .notes-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .notes-section h3 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .question-group {
+            margin-bottom: 20px;
+        }
+        
+        .question-group h4 {
+            color: var(--dark-blue);
+            margin-bottom: 8px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            resize: vertical;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: var(--dark-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--dark-orange);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .concept-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .concept-table th {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .concept-table td {
+            padding: 10px;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .concept-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .concept-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .highlight {
+            background-color: #e8f4f8;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .global-south {
+            background-color: #fff8e6;
+            border-left: 4px solid #ff9900;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .global-south h3 {
+            color: #cc5500;
+            margin-bottom: 10px;
+        }
+        
+        .method-diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+        }
+        
+        .method-diagram img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .method-diagram p {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar with Tabs -->
+        <div class="sidebar">
+            <h2>Linguistic Ethnography</h2>
+            <ul class="tabs">
+                <li class="tab active" data-tab="what-is">What is Linguistic Ethnography?</li>
+                <li class="tab" data-tab="theory">Key Theoretical Concepts</li>
+                <li class="tab" data-tab="methods">Methods & Data Collection</li>
+                <li class="tab" data-tab="global-south">Ethnography in Global South Contexts</li>
+                <li class="tab" data-tab="analysis">Data Analysis</li>
+                <li class="tab" data-tab="references">References</li>
+            </ul>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- What is Linguistic Ethnography Section -->
+            <div class="section active" id="what-is">
+                <h1>What is Linguistic Ethnography?</h1>
+                <p>Linguistic ethnography is a methodological approach that combines ethnographic research with linguistic analysis to understand how language is used in social contexts. As Rampton et al. (2014) explain, it's "ethnography enriched by the study of language" - not simply studying language in isolation, but examining how language practices are embedded in cultural contexts, social relations, and institutional processes.</p>
+                
+                <div class="concept-box">
+                    <h3>Defining Linguistic Ethnography</h3>
+                    <p>Linguistic ethnography is characterized by:</p>
+                    <ul>
+                        <li>An integrated approach to language and culture</li>
+                        <li>Attention to the relationship between language and social structure</li>
+                        <li>Focus on the situated use of language in everyday practices</li>
+                        <li>Emphasis on the "total linguistic fact" - the inseparability of linguistic form and social context</li>
+                        <li>Methodological reflexivity about the researcher's positionality</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h3>Practical Example: Linguistic Ethnography in Education</h3>
+                    <p>A researcher studying classroom interactions might observe how teachers and students use language to establish authority, negotiate meaning, and construct identities. Rather than just analyzing grammar or vocabulary, they would examine how linguistic choices reflect and reinforce power dynamics, cultural expectations, and institutional norms. For example, they might analyze how a teacher's use of specific discourse markers ("well," "you know") signals different types of authority in different contexts.</p>
+                </div>
+                
+                <div class="global-south">
+                    <h3>Linguistic Ethnography in Context: The ANC Card in Uganda</h3>
+                    <p>In the Ugandan maternity care context, linguistic ethnography reveals how a simple medical document (the ANC card) functions as more than just a record of health information. It becomes a tool for enforcing compliance with health policies, shaping women's experiences, and mediating relationships between patients and providers. The card's meaning is not fixed but emerges through its use in specific social contexts, demonstrating how language practices are intertwined with institutional processes.</p>
+                </div>
+                
+                <div class="notes-section">
+                    <h3>Your Notes & Questions</h3>
+                    <div class="question-group">
+                        <h4>How does linguistic ethnography differ from other approaches to studying language in context?</h4>
+                        <textarea id="what-is-notes" placeholder="Describe your understanding of linguistic ethnography versus other approaches..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <h4>What is the relationship between language and social practice in your research context?</h4>
+                        <textarea id="what-is-notes2" placeholder="Consider how language and social practice interact in your context..."></textarea>
+                    </div>
+                    <button onclick="downloadNotes('what-is-notes,what-is-notes2', 'Linguistic-Ethnography-Notes-What-is.pdf')">Download Notes as PDF</button>
+                </div>
+            </div>
+            
+            <!-- Key Theoretical Concepts Section -->
+            <div class="section" id="theory">
+                <h1>Key Theoretical Concepts in Linguistic Ethnography</h1>
+                <p>Linguistic ethnography draws on a rich theoretical framework from linguistic anthropology and sociolinguistics. These concepts help researchers understand how language functions in social contexts.</p>
+                
+                <h2>The Total Linguistic Fact</h2>
+                <p>As Silverstein (1985) articulated, the "total linguistic fact" refers to the inseparability of linguistic form and social context. Language is never just about words and grammar - it's always embedded in social relations, cultural ideologies, and institutional practices.</p>
+                
+                <div class="concept-table">
+                    <tr>
+                        <th>Concept</th>
+                        <th>Description</th>
+                        <th>Example in Linguistic Ethnography</th>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Indexicality</span></td>
+                        <td>How linguistic forms point to aspects of social context beyond their literal meaning</td>
+                        <td>How a specific accent might index regional identity, social class, or educational background</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Inferencing</span></td>
+                        <td>The interpretive work people do to make sense of linguistic signs in context</td>
+                        <td>How a student infers a teacher's expectations based on specific phrasing or intonation patterns</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Reflexivity</span></td>
+                        <td>The process of monitoring and adjusting communication based on contextual cues</td>
+                        <td>How a healthcare provider adjusts their language based on patient responses during a consultation</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Genre</span></td>
+                        <td>Conventionalized expectations about types of communicative events</td>
+                        <td>How classroom lectures, student presentations, and group discussions each have distinct genre expectations</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Textual Trajectories</span></td>
+                        <td>How texts move across different contexts and transform in meaning</td>
+                        <td>How a national education policy document gets interpreted and implemented differently in various schools</td>
+                    </tr>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Multi-scalar Analysis</h3>
+                    <p>Linguistic ethnography requires examining phenomena across multiple scales simultaneously:</p>
+                    <ul>
+                        <li><strong>Micro-scale:</strong> Individual utterances and interactions</li>
+                        <li><strong>Meso-scale:</strong> Institutional practices and local communities</li>
+                        <li><strong>Macro-scale:</strong> National policies, global discourses, historical processes</li>
+                    </ul>
+                    <p>As Tusting's (2010) example shows, even a simple nursery nurse's observation form integrates immediate classroom activities with broader social systems including the Early Years Centre's planning procedures, the nurse's career, and government policy.</p>
+                </div>
+                
+                <div class="global-south">
+                    <h3>Global South Context: Texts and Power in Health Communication</h3>
+                    <p>In the Ugandan maternity care study, the ANC card functions as a "boss text" that shapes local practices according to international health priorities. This illustrates how linguistic ethnography reveals how transnational texts (like the Millennium Development Goals) get operationalized in local contexts, often in ways that reflect power imbalances between Global North and South.</p>
+                </div>
+                
+                <div class="notes-section">
+                    <h3>Your Notes & Questions</h3>
+                    <div class="question-group">
+                        <h4>Which theoretical concepts from linguistic ethnography are most relevant to my research?</h4>
+                        <textarea id="theory-notes1" placeholder="Consider which concepts apply to your research context..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <h4>How might I apply the concept of "total linguistic fact" to my research?</h4>
+                        <textarea id="theory-notes2" placeholder="Reflect on how language and context are inseparable in your work..."></textarea>
+                    </div>
+                    <button onclick="downloadNotes('theory-notes1,theory-notes2', 'Linguistic-Ethnography-Notes-Theory.pdf')">Download Notes as PDF</button>
+                </div>
+            </div>
+            
+            <!-- Methods & Data Collection Section -->
+            <div class="section" id="methods">
+                <h1>Methods & Data Collection in Linguistic Ethnography</h1>
+                <p>Linguistic ethnography employs diverse methods to capture the complex relationship between language and social context. These methods are designed to capture both the details of linguistic interaction and the broader social context in which they occur.</p>
+                
+                <div class="method-diagram">
+                    <h3>Linguistic Ethnography Research Cycle</h3>
+                    <p>Observation → Data Collection → Analysis → Reflexivity → New Questions</p>
+                    <p><em>Each stage informs the next in a continuous, iterative process</em></p>
+                </div>
+                
+                <h2>Primary Data Collection Methods</h2>
+                
+                <h3>Participant Observation</h3>
+                <p>The cornerstone method where researchers both observe and participate in community activities over extended periods. Unlike simple observation, participant observation involves active engagement with the social context being studied.</p>
+                
+                <h3>Linguistic Interviews</h3>
+                <p>Structured, semi-structured, and unstructured interviews focused specifically on language use and attitudes. These might include:</p>
+                <ul>
+                    <li><strong>Stimulated recall interviews:</strong> Participants discuss recorded interactions to provide insights about their thinking during those moments</li>
+                    <li><strong>Language history interviews:</strong> Exploring how individuals' language practices have changed over time</li>
+                    <li><strong>Focus groups:</strong> Group discussions to explore shared language ideologies and practices</li>
+                </ul>
+                
+                <h3>Multimodal Data Collection</h3>
+                <p>Linguistic ethnography recognizes that communication involves more than just words:</p>
+                <ul>
+                    <li>Video recordings of interactions</li>
+                    <li>Photographs of physical environments</li>
+                    <li>Mapping of spatial relationships</li>
+                    <li>Analysis of non-verbal cues (gaze, gesture, posture)</li>
+                </ul>
+                
+                <h3>Document Analysis</h3>
+                <p>Analysis of texts that circulate within the social context being studied, including:</p>
+                <ul>
+                    <li>Policy documents</li>
+                    <li>Curriculum materials</li>
+                    <li>Official forms and records</li>
+                    <li>Media representations</li>
+                    <li>Personal diaries and letters</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h3>Practical Example: Studying Language in Healthcare Settings</h3>
+                    <p>A linguistic ethnographer studying doctor-patient interactions might:</p>
+                    <ul>
+                        <li>Record consultations and take field notes about the physical setting, body language, and interaction patterns</li>
+                        <li>Conduct stimulated recall interviews with doctors and patients about specific moments in the consultation</li>
+                        <li>Analyze how medical terminology is used differently in different contexts</li>
+                        <li>Examine how patient records are created and used across different healthcare settings</li>
+                        <li>Study how institutional policies shape communication practices</li>
+                    </ul>
+                </div>
+                
+                <div class="global-south">
+                    <h3>Global South Context: Texts in Low-Literacy Settings</h3>
+                    <p>In the Ugandan maternity care study, linguistic ethnographers had to adapt their methods for a low-literacy context:</p>
+                    <ul>
+                        <li>Focusing on how documents (like ANC cards) function symbolically rather than for their content</li>
+                        <li>Observing how texts are handled and used by people who cannot read them</li>
+                        <li>Studying oral communication and verbal transmission of information</li>
+                        <li>Examining how international texts (like MDGs) get translated into local practices</li>
+                    </ul>
+                    <p>This demonstrates how linguistic ethnography must be adapted to local contexts and literacy practices.</p>
+                </div>
+                
+                <div class="notes-section">
+                    <h3>Your Notes & Questions</h3>
+                    <div class="question-group">
+                        <h4>What data collection methods would be most appropriate for my research context?</h4>
+                        <textarea id="methods-notes1" placeholder="Consider which methods would work best for your research..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <h4>How might I adapt these methods for a low-literacy or Global South context?</h4>
+                        <textarea id="methods-notes2" placeholder="Reflect on adaptations needed for specific contexts..."></textarea>
+                    </div>
+                    <button onclick="downloadNotes('methods-notes1,methods-notes2', 'Linguistic-Ethnography-Notes-Methods.pdf')">Download Notes as PDF</button>
+                </div>
+            </div>
+            
+            <!-- Ethnography in Global South Contexts Section -->
+            <div class="section" id="global-south">
+                <h1>Linguistic Ethnography in Global South Contexts</h1>
+                <p>Conducting linguistic ethnography in Global South contexts presents unique challenges and opportunities. These contexts often have different literacy practices, communication norms, and power dynamics than those commonly studied in Western contexts.</p>
+                
+                <h2>Key Considerations for Global South Research</h2>
+                
+                <div class="concept-box">
+                    <h3>Texts and Literacy in Context</h3>
+                    <p>In low-literacy settings, texts function differently than in text-saturated Western contexts:</p>
+                    <ul>
+                        <li>Texts may be used symbolically rather than for their content</li>
+                        <li>Oral communication often plays a larger role than written communication</li>
+                        <li>Transnational texts (from Global North) may dominate local discourse</li>
+                        <li>"Absent texts" (those that could exist but don't) can be as significant as existing texts</li>
+                    </ul>
+                    <p>As Smith (2006) notes: "The magical character of replicable texts... is that they are read, seen, heard, watched in particular local and observable settings while at the same time hooking up an individual's consciousness into relations that are translocal."</p>
+                </div>
+                
+                <h2>Case Study: Maternity Care in Northern Uganda</h2>
+                <p>The ANC card in northern Uganda demonstrates how linguistic ethnography reveals complex relationships between language, power, and health practices:</p>
+                
+                <div class="global-south">
+                    <h3>ANC Card as a "Boss Text"</h3>
+                    <p>The ANC card functions as a "boss text" that shapes local practices according to international health priorities. Despite many women being illiterate, the card becomes a symbolic key to delivery care. Women fear being turned away without it, even though they cannot read its contents.</p>
+                    
+                    <h3>Text-Work-Text Sequences</h3>
+                    <p>The ANC card exemplifies a text-work-text sequence:</p>
+                    <ul>
+                        <li><strong>Text:</strong> International health goals (MDGs)</li>
+                        <li><strong>Work:</strong> Health administrators interpret and implement these goals</li>
+                        <li><strong>Text:</strong> Local policies and practices (ANC card requirements)</li>
+                    </ul>
+                    <p>This sequence shows how global discourses get operationalized in local contexts, often in ways that reflect power imbalances.</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Reflexivity in Global South Research</h3>
+                    <p>Researchers must be critically reflexive about their positionality:</p>
+                    <ul>
+                        <li>How does being an outsider (or insider) affect rapport and access?</li>
+                        <li>How do power dynamics between researcher and participants shape data collection?</li>
+                        <li>How might Western academic frameworks misinterpret local practices?</li>
+                        <li>What ethical considerations arise when studying vulnerable populations?</li>
+                    </ul>
+                    <p>As noted by native scholars conducting research in the Global South: "Our proximity, intellectual care, and own politics are urging us to engage reflexively in conversations and in writing." (Anthropology Encyclopedia)</p>
+                </div>
+                
+                <div class="example-box">
+                    <h3>Practical Example: LC I Letter in Uganda</h3>
+                    <p>In the Ugandan maternity care study, women were required to obtain a letter from a Local Council I (LC I) representative if their husbands wouldn't participate in HIV testing. This letter, though not a standardized document, became a powerful text that enforced compliance with health policies.</p>
+                    <p>Linguistic ethnography revealed how this requirement:</p>
+                    <ul>
+                        <li>Reflected gendered power dynamics</li>
+                        <li>Was enabled by low literacy and limited access to information</li>
+                        <li>Contradicted official policy guidelines</li>
+                        <li>Shaped women's healthcare decisions</li>
+                    </ul>
+                    <p>This example shows how linguistic ethnography can reveal how seemingly minor texts have significant social consequences.</p>
+                </div>
+                
+                <div class="notes-section">
+                    <h3>Your Notes & Questions</h3>
+                    <div class="question-group">
+                        <h4>What are the key challenges of conducting linguistic ethnography in my specific Global South context?</h4>
+                        <textarea id="global-south-notes1" placeholder="Identify specific challenges for your context..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <h4>How can I adapt linguistic ethnography methods to be more culturally appropriate in this context?</h4>
+                        <textarea id="global-south-notes2" placeholder="Consider methodological adaptations for your context..."></textarea>
+                    </div>
+                    <button onclick="downloadNotes('global-south-notes1,global-south-notes2', 'Linguistic-Ethnography-Notes-Global-South.pdf')">Download Notes as PDF</button>
+                </div>
+            </div>
+            
+            <!-- Data Analysis Section -->
+            <div class="section" id="analysis">
+                <h1>Data Analysis in Linguistic Ethnography</h1>
+                <p>Data analysis in linguistic ethnography requires moving between detailed linguistic analysis and broader social interpretation. It involves examining how language practices are embedded in social contexts and how they shape and are shaped by social relations.</p>
+                
+                <h2>Analysis Frameworks</h2>
+                
+                <div class="concept-table">
+                    <tr>
+                        <th>Analysis Approach</th>
+                        <th>Description</th>
+                        <th>Example Application</th>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Conversation Analysis</span></td>
+                        <td>Micro-analysis of sequential organization of talk</td>
+                        <td>Examining how doctors and patients take turns speaking during consultations</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Discourse Analysis</span></td>
+                        <td>Analysis of how language constructs social realities</td>
+                        <td>How national education policy documents construct certain types of learners and teachers</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Multimodal Analysis</span></td>
+                        <td>Analysis of multiple modes of communication (language, gesture, image)</td>
+                        <td>How a teacher's use of gestures complements verbal instruction in the classroom</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Indexical Analysis</span></td>
+                        <td>Analysis of how linguistic forms index social identities and relations</td>
+                        <td>How a student's use of specific slang terms indexes peer group membership</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Textual Trajectory Analysis</span></td>
+                        <td>Analysis of how texts move across contexts and transform in meaning</td>
+                        <td>How a curriculum document gets interpreted differently in various schools</td>
+                    </tr>
+                </div>
+                
+                <h2>Analytic Process</h2>
+                <p>Linguistic ethnography analysis involves:</p>
+                <ol>
+                    <li><strong>Close reading of data:</strong> Paying attention to details of language use, interaction patterns, and contextual features</li>
+                    <li><strong>Connecting micro and macro:</strong> Relating specific linguistic instances to broader social structures and processes</li>
+                    <li><strong>Reflexive interpretation:</strong> Being aware of how the researcher's positionality shapes interpretation</li>
+                    <li><strong>Contextual grounding:</strong> Always locating linguistic phenomena in their specific social contexts</li>
+                    <li><strong>Comparative analysis:</strong> Looking for patterns across different instances and contexts</li>
+                </ol>
+                
+                <div class="example-box">
+                    <h3>Practical Example: Analyzing the ANC Card in Uganda</h3>
+                    <p>When analyzing the ANC card data, linguistic ethnographers would:</p>
+                    <ul>
+                        <li>Examine how the card is handled physically (who holds it, where it's kept)</li>
+                        <li>Analyze verbal interactions about the card (what people say about it, how they refer to it)</li>
+                        <li>Consider how the card functions symbolically despite low literacy</li>
+                        <li>Trace its textual trajectory from international health policies to local implementation</li>
+                        <li>Examine how it shapes relationships between patients, providers, and community leaders</li>
+                    </ul>
+                    <p>This analysis reveals how a simple document becomes a powerful tool for enforcing compliance with health policies, even when its content isn't fully understood by users.</p>
+                </div>
+                
+                <div class="global-south">
+                    <h3>Global South Context: Analyzing Absent Texts</h3>
+                    <p>In low-literacy contexts, linguistic ethnographers must pay attention to what is not present as much as what is present:</p>
+                    <ul>
+                        <li>What texts <em>could</em> exist but don't (e.g., patient-generated complaint letters)</li>
+                        <li>How oral communication substitutes for written communication</li>
+                        <li>What information is transmitted verbally rather than through documents</li>
+                        <li>How power dynamics shape which texts get produced and circulated</li>
+                    </ul>
+                    <p>As Williams and Rankin (2015) note: "Texts are not necessary to the discovery of ruling relations. [...] while using textual data is one of the important contributions of the IE method, they are not absolutely essential to develop an IE analysis. Other data embedded in people's talk and activities can be used to link people's activities across time and geography."</p>
+                </div>
+                
+                <div class="notes-section">
+                    <h3>Your Notes & Questions</h3>
+                    <div class="question-group">
+                        <h4>What analytical framework would best suit my research data?</h4>
+                        <textarea id="analysis-notes1" placeholder="Consider which analytical framework fits your data..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <h4>How can I connect linguistic details to broader social processes in my analysis?</h4>
+                        <textarea id="analysis-notes2" placeholder="Reflect on how to connect micro and macro in your analysis..."></textarea>
+                    </div>
+                    <button onclick="downloadNotes('analysis-notes1,analysis-notes2', 'Linguistic-Ethnography-Notes-Analysis.pdf')">Download Notes as PDF</button>
+                </div>
+            </div>
+            
+            <!-- References Section -->
+            <div class="section" id="references">
+                <h1>Key References in Linguistic Ethnography</h1>
+                
+                <div class="references-list">
+                    <div class="reference-item">
+                        <p>Rampton, B., Maybin, J., & Roberts, C. (2014). <em>Methodological foundations in linguistic ethnography</em>. King's College London. Available at: <a href="https://journals.sagepub.com/doi/10.1177/1609406916637088" target="_blank">https://journals.sagepub.com/doi/10.1177/1609406916637088</a></p>
+                        <p>This foundational paper outlines the theoretical and methodological basis of linguistic ethnography, emphasizing the relationship between linguistics and ethnography, the importance of multi-scalar analysis, and the role of reflexivity in research practice.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <p>Blommaert, J. (2005). <em>Discourse: A Critical Introduction</em>. Cambridge University Press.</p>
+                        <p>Blommaert's work is essential for understanding how discourse functions in social contexts, with particular attention to how language practices are embedded in broader social structures and power relations.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <p>Goodwin, C. (2000). Action and Embodiment Within Situated Human Interaction. <em>Journal of Pragmatics</em>, 32, 1489-1522.</p>
+                        <p>Goodwin's work on multimodal analysis is crucial for understanding how communication involves more than just words, including gestures, gaze, and body positioning in interaction.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <p>Smith, D. E. (2006). <em>Institutional Ethnography: A Sociology for People</em>. AltaMira Press.</p>
+                        <p>Smith's work on institutional ethnography provides important insights into how texts function as coordinating mechanisms across different contexts, with particular relevance for understanding how global policies get operationalized locally.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <p>Anthropology Encyclopedia. (2023). Ethnography. Available at: <a href="https://www.anthroencyclopedia.com/entry/ethnography" target="_blank">https://www.anthroencyclopedia.com/entry/ethnography</a></p>
+                        <p>This resource offers critical perspectives on conducting ethnographic research in the Global South, particularly regarding reflexivity, positionality, and ethical considerations for native scholars.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <p>ATLAS.ti. (2025). <em>Ethnographic Research | Definition, Methods & Data</em>. Available at: <a href="https://atlasti.com/guides/qualitative-research-guide-part-1/ethnographic-research" target="_blank">https://atlasti.com/guides/qualitative-research-guide-part-1/ethnographic-research</a></p>
+                        <p>Practical guide to data collection and analysis methods in ethnographic research, with specific attention to multimodal data and the integration of different types of evidence.</p>
+                    </div>
+                </div>
+                
+                <div class="notes-section">
+                    <h3>Additional Resources & Notes</h3>
+                    <textarea id="references-notes" placeholder="Add any additional references or notes here..."></textarea>
+                    <button onclick="downloadNotes('references-notes', 'Linguistic-Ethnography-References-and-Notes.pdf')">Download Notes as PDF</button>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>ALS 863 - Linguistic Ethnography: Theory & Practice in Sociocultural Linguistics | Designed with insights from Rampton et al. (2014), Blommaert (2005), and Smith (2006)</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and sections
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding section
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Function to download notes as PDF
+        function downloadNotes(textareaIds, filename) {
+            const ids = textareaIds.split(',');
+            let notesContent = '';
+            
+            ids.forEach(id => {
+                const textarea = document.getElementById(id);
+                if (textarea) {
+                    const value = textarea.value.trim();
+                    if (value) {
+                        const title = textarea.previousElementSibling.querySelector('h4').textContent;
+                        notesContent += `<h3>${title}</h3><div class="answer">${value}</div>`;
+                    }
+                }
+            });
+            
+            if (!notesContent) {
+                alert('Please enter some notes before downloading.');
+                return;
+            }
+            
+            // Create a new window for printing
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>${filename}</title>
+                        <style>
+                            body { 
+                                font-family: Arial, sans-serif; 
+                                line-height: 1.6; 
+                                padding: 20px;
+                                color: #333;
+                            }
+                            h1 { 
+                                color: #003366; 
+                                border-bottom: 2px solid #cc5500; 
+                                padding-bottom: 10px; 
+                                margin-bottom: 20px;
+                            }
+                            h3 {
+                                color: #003366;
+                                margin-top: 20px;
+                            }
+                            .answer {
+                                white-space: pre-wrap;
+                                margin-bottom: 25px;
+                                padding-left: 20px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>${filename.replace('.pdf', '')}</h1>
+                        ${notesContent}
+                    </body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            printWindow.print();
+        }
+    </script>
+</body>
+</html>
+```
