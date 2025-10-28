@@ -23,7 +23,8 @@
         body {
             background-color: white;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.8;
+            padding: 20px;
         }
         
         .container {
@@ -37,6 +38,9 @@
             background-color: var(--light-gray);
             padding: 20px;
             border-right: 1px solid var(--medium-gray);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
         }
         
         .sidebar h2 {
@@ -76,8 +80,9 @@
         /* Main Content Styles */
         .main-content {
             flex: 1;
-            padding: 30px;
+            padding: 30px 50px;
             overflow-y: auto;
+            margin-left: 280px;
         }
         
         .section {
@@ -249,6 +254,7 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s;
+            margin-top: 10px;
         }
         
         button:hover {
@@ -328,6 +334,26 @@
             font-style: italic;
             color: #666;
         }
+        
+        /* Top button */
+        #topBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--dark-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+        
+        #topBtn:hover {
+            background-color: var(--dark-orange);
+        }
     </style>
 </head>
 <body>
@@ -354,7 +380,7 @@
                 
                 <div class="concept-box">
                     <h3>Defining Linguistic Ethnography</h3>
-                    <p>Linguistic ethnography is characterized by:</p>
+                    <p>Linguistic ethnography is characterised by:</p>
                     <ul>
                         <li>An integrated approach to language and culture</li>
                         <li>Attention to the relationship between language and social structure</li>
@@ -366,7 +392,7 @@
                 
                 <div class="example-box">
                     <h3>Practical Example: Linguistic Ethnography in Education</h3>
-                    <p>A researcher studying classroom interactions might observe how teachers and students use language to establish authority, negotiate meaning, and construct identities. Rather than just analyzing grammar or vocabulary, they would examine how linguistic choices reflect and reinforce power dynamics, cultural expectations, and institutional norms. For example, they might analyze how a teacher's use of specific discourse markers ("well," "you know") signals different types of authority in different contexts.</p>
+                    <p>A researcher studying classroom interactions might observe how teachers and students use language to establish authority, negotiate meaning, and construct identities. Rather than just analysing grammar or vocabulary, they would examine how linguistic choices reflect and reinforce power dynamics, cultural expectations, and institutional norms. For example, they might analyse how a teacher's use of specific discourse markers ("well," "you know") signals different types of authority in different contexts.</p>
                 </div>
                 
                 <div class="global-south">
@@ -419,7 +445,7 @@
                     </tr>
                     <tr>
                         <td><span class="highlight">Genre</span></td>
-                        <td>Conventionalized expectations about types of communicative events</td>
+                        <td>Conventionalised expectations about types of communicative events</td>
                         <td>How classroom lectures, student presentations, and group discussions each have distinct genre expectations</td>
                     </tr>
                     <tr>
@@ -432,17 +458,17 @@
                 <div class="concept-box">
                     <h3>Multi-scalar Analysis</h3>
                     <p>Linguistic ethnography requires examining phenomena across multiple scales simultaneously:</p>
-                    <ul>
+                    <ol>
                         <li><strong>Micro-scale:</strong> Individual utterances and interactions</li>
                         <li><strong>Meso-scale:</strong> Institutional practices and local communities</li>
                         <li><strong>Macro-scale:</strong> National policies, global discourses, historical processes</li>
-                    </ul>
+                    </ol>
                     <p>As Tusting's (2010) example shows, even a simple nursery nurse's observation form integrates immediate classroom activities with broader social systems including the Early Years Centre's planning procedures, the nurse's career, and government policy.</p>
                 </div>
                 
                 <div class="global-south">
                     <h3>Global South Context: Texts and Power in Health Communication</h3>
-                    <p>In the Ugandan maternity care study, the ANC card functions as a "boss text" that shapes local practices according to international health priorities. This illustrates how linguistic ethnography reveals how transnational texts (like the Millennium Development Goals) get operationalized in local contexts, often in ways that reflect power imbalances between Global North and South.</p>
+                    <p>In the Ugandan maternity care study, the ANC card functions as a "boss text" that shapes local practices according to international health priorities. This illustrates how linguistic ethnography reveals how transnational texts (like the Millennium Development Goals) get operationalised in local contexts, often in ways that reflect power imbalances between Global North and South.</p>
                 </div>
                 
                 <div class="notes-section">
@@ -484,7 +510,7 @@
                 </ul>
                 
                 <h3>Multimodal Data Collection</h3>
-                <p>Linguistic ethnography recognizes that communication involves more than just words:</p>
+                <p>Linguistic ethnography recognises that communication involves more than just words:</p>
                 <ul>
                     <li>Video recordings of interactions</li>
                     <li>Photographs of physical environments</li>
@@ -508,7 +534,7 @@
                     <ul>
                         <li>Record consultations and take field notes about the physical setting, body language, and interaction patterns</li>
                         <li>Conduct stimulated recall interviews with doctors and patients about specific moments in the consultation</li>
-                        <li>Analyze how medical terminology is used differently in different contexts</li>
+                        <li>Analyse how medical terminology is used differently in different contexts</li>
                         <li>Examine how patient records are created and used across different healthcare settings</li>
                         <li>Study how institutional policies shape communication practices</li>
                     </ul>
@@ -534,7 +560,7 @@
                     </div>
                     <div class="question-group">
                         <h4>How might I adapt these methods for a low-literacy or Global South context?</h4>
-                        <textarea id="methods-notes2" placeholder="Reflect on adaptations needed for specific contexts..."></textarea>
+                        <textarea id="methods-notes2" placeholder="Reflect on methodological adaptations for your context..."></textarea>
                     </div>
                     <button onclick="downloadNotes('methods-notes1,methods-notes2', 'Linguistic-Ethnography-Notes-Methods.pdf')">Download Notes as PDF</button>
                 </div>
@@ -568,12 +594,12 @@
                     
                     <h3>Text-Work-Text Sequences</h3>
                     <p>The ANC card exemplifies a text-work-text sequence:</p>
-                    <ul>
+                    <ol>
                         <li><strong>Text:</strong> International health goals (MDGs)</li>
                         <li><strong>Work:</strong> Health administrators interpret and implement these goals</li>
                         <li><strong>Text:</strong> Local policies and practices (ANC card requirements)</li>
-                    </ul>
-                    <p>This sequence shows how global discourses get operationalized in local contexts, often in ways that reflect power imbalances.</p>
+                    </ol>
+                    <p>This sequence shows how global discourses get operationalised in local contexts, often in ways that reflect power imbalances.</p>
                 </div>
                 
                 <div class="concept-box">
@@ -590,7 +616,7 @@
                 
                 <div class="example-box">
                     <h3>Practical Example: LC I Letter in Uganda</h3>
-                    <p>In the Ugandan maternity care study, women were required to obtain a letter from a Local Council I (LC I) representative if their husbands wouldn't participate in HIV testing. This letter, though not a standardized document, became a powerful text that enforced compliance with health policies.</p>
+                    <p>In the Ugandan maternity care study, women were required to obtain a letter from a Local Council I (LC I) representative if their husbands wouldn't participate in HIV testing. This letter, though not a standardised document, became a powerful text that enforced compliance with health policies.</p>
                     <p>Linguistic ethnography revealed how this requirement:</p>
                     <ul>
                         <li>Reflected gendered power dynamics</li>
@@ -630,7 +656,7 @@
                     </tr>
                     <tr>
                         <td><span class="highlight">Conversation Analysis</span></td>
-                        <td>Micro-analysis of sequential organization of talk</td>
+                        <td>Micro-analysis of sequential organisation of talk</td>
                         <td>Examining how doctors and patients take turns speaking during consultations</td>
                     </tr>
                     <tr>
@@ -667,10 +693,10 @@
                 
                 <div class="example-box">
                     <h3>Practical Example: Analyzing the ANC Card in Uganda</h3>
-                    <p>When analyzing the ANC card data, linguistic ethnographers would:</p>
+                    <p>When analysing the ANC card data, linguistic ethnographers would:</p>
                     <ul>
                         <li>Examine how the card is handled physically (who holds it, where it's kept)</li>
-                        <li>Analyze verbal interactions about the card (what people say about it, how they refer to it)</li>
+                        <li>Analyse verbal interactions about the card (what people say about it, how they refer to it)</li>
                         <li>Consider how the card functions symbolically despite low literacy</li>
                         <li>Trace its textual trajectory from international health policies to local implementation</li>
                         <li>Examine how it shapes relationships between patients, providers, and community leaders</li>
@@ -679,7 +705,7 @@
                 </div>
                 
                 <div class="global-south">
-                    <h3>Global South Context: Analyzing Absent Texts</h3>
+                    <h3>Global South Context: Analysing Absent Texts</h3>
                     <p>In low-literacy contexts, linguistic ethnographers must pay attention to what is not present as much as what is present:</p>
                     <ul>
                         <li>What texts <em>could</em> exist but don't (e.g., patient-generated complaint letters)</li>
@@ -711,7 +737,7 @@
                 <div class="references-list">
                     <div class="reference-item">
                         <p>Rampton, B., Maybin, J., & Roberts, C. (2014). <em>Methodological foundations in linguistic ethnography</em>. King's College London. Available at: <a href="https://journals.sagepub.com/doi/10.1177/1609406916637088" target="_blank">https://journals.sagepub.com/doi/10.1177/1609406916637088</a></p>
-                        <p>This foundational paper outlines the theoretical and methodological basis of linguistic ethnography, emphasizing the relationship between linguistics and ethnography, the importance of multi-scalar analysis, and the role of reflexivity in research practice.</p>
+                        <p>This foundational paper outlines the theoretical and methodological basis of linguistic ethnography, emphasising the relationship between linguistics and ethnography, the importance of multi-scalar analysis, and the role of reflexivity in research practice.</p>
                     </div>
                     
                     <div class="reference-item">
@@ -726,7 +752,7 @@
                     
                     <div class="reference-item">
                         <p>Smith, D. E. (2006). <em>Institutional Ethnography: A Sociology for People</em>. AltaMira Press.</p>
-                        <p>Smith's work on institutional ethnography provides important insights into how texts function as coordinating mechanisms across different contexts, with particular relevance for understanding how global policies get operationalized locally.</p>
+                        <p>Smith's work on institutional ethnography provides important insights into how texts function as coordinating mechanisms across different contexts, with particular relevance for understanding how global policies get operationalised locally.</p>
                     </div>
                     
                     <div class="reference-item">
@@ -752,6 +778,8 @@
             </div>
         </div>
     </div>
+    
+    <button id="topBtn" onclick="scrollToTop()">Top</button>
 
     <script>
         // Tab switching functionality
@@ -831,7 +859,24 @@
             printWindow.document.close();
             printWindow.print();
         }
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/hide top button based on scroll position
+        window.onscroll = function() {
+            const topBtn = document.getElementById("topBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        };
     </script>
 </body>
 </html>
-```
